@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results for {{ domain }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        pre { background-color: #f4f4f4; padding: 15px; white-space: pre-wrap; }
+        a { text-decoration: none; color: blue; }
+        h2, h3 { margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <h1>Results for {{ domain }}</h1>
+
+    <h2>IP Address</h2>
+    <p>{{ ip }}</p>
+
+    <h2>SSL Certificate Details</h2>
+    <pre>{{ ssl_info }}</pre>
+
+    <h2>WHOIS Information</h2>
+    <pre>{{ whois_info }}</pre>
+
+    <h2>DNS Records</h2>
+    {% for record_type, values in dns_info.items() %}
+        <h3>{{ record_type }} Records</h3>
+        <ul>
+            {% for value in values %}
+                <li>{{ value }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
+    <h2>Server Location</h2>
+    <ul>
+        <li>City: {{ censys_info.city }}</li>
+        <li>Country: {{ censys_info.country }}</li>
+        <li>Region: {{ censys_info.region }}</li>
+        <li>Timezone: {{ censys_info.timezone }}</li>
+        <li>Languages: {{ censys_info.languages }}</li>
+        <li>Currency: {{ censys_info.currency }}</li>
+    </ul> 
+    
+    <h2>Server Info</h2>
+    <ul>
+    <li>Server: {{ server_status.server_info.server }}</li>
+    <li>Powered By: {{ server_status.server_info.powered_by }}</li>
+    <li>Content Security Policy: {{ server_status.server_info.content_security_policy }}</li>
+    </ul>
+
+    <h2>HTTP Security</h2>
+    <ul>
+    <li>Content Security Policy: {{ server_status.http_security['Content Security Policy'] }}</li>
+    <li>Strict Transport Security: {{ server_status.http_security['Strict Transport Security'] }}</li>
+    <li>X-Content-Type-Options: {{ server_status.http_security['X-Content-Type-Options'] }}</li>
+    <li>X-Frame-Options: {{ server_status.http_security['X-Frame-Options'] }}</li>
+    <li>X-XSS-Protection: {{ server_status.http_security['X-XSS-Protection'] }}</li>
+    </ul>
+
+    <h2>DNS Server</h2>
+    {% for server in dns_servers_info %}
+    <h3>DNS Server #{{ loop.index }}</h3>
+    <ul>
+        <li>IP Address: {{ server.ip_address }}</li>
+        <li>DoH Support: {% if server.doh_support %}✅ Yes{% else %}❌ No*{% endif %}</li>
+    </ul>
+    {% endfor %}
+    <p>* DoH Support is determined by the DNS server's response to a DoH query. Sometimes this gives false negatives, and it's also possible that the DNS server supports DoH but does not respond to DoH queries. If the DNS server does not support DoH, it may still be possible to use DoH by using a DoH proxy.</p>
+
+
+    <h2>HTTP Headers</h2>
+    <ul>
+    {% if headers_info and 'Error' not in headers_info %}
+        {% for header, value in headers_info.items() %}
+            <li><strong>{{ header }}:</strong> {{ value }}</li>
+        {% endfor %}
+    {% else %}
+        <p>{{ headers_info }}</p>  {# Display error message if headers could not be retrieved #}
+    {% endif %}
+    </ul>
+
+    <h2>Server Status</h2>
+    <ul>
+    <li>Is Up? {% if server_status.is_up %}✅ Online{% else %}❌ Offline{% endif %}</li>
+    <li>Status Code: {{ server_status.status_code }}</li>
+    <li>Response Time: {{ server_status.response_time }} ms</li>
+    </ul>
+
+    <h2>Security</h2>
+
+    <h3>Security.txt</h3>
+    <ul>
+    <li>Present: {{ security_info.security_txt }}</li>
+    <p>Having a security.txt ensures security researchers know how and where to safely report vulnerabilities.</p>
+    </ul>
+
+    <h3>Firewall</h3>
+    <ul>
+        <li>Firewall: {{ security_info.firewall }}</li>
+            <p>The domain may be protected with a proprietary or custom WAF which we were unable to identify automatically.</p>
+    </ul>
+
+    <h3>DNSSEC</h3>
+    <ul>
+    <li>DNSKEY Present: {{ security_info.dnssec.dnskey }}</li>
+    <li>DS Present: {{ security_info.dnssec.ds }}</li>
+    <li>RRSIG Present: {{ security_info.dnssec.rrsig }}</li>
+    </ul>
+
+    <h3>HSTS Check</h3>
+    <ul>
+        <li>HSTS Enabled: {{ security_info.hsts }}</li>
+         <p>Site does not serve any HSTS headers.</p>
+    </ul>
+
+    <h3>Threats</h3>
+    <ul>
+            <li>Phishing Status: {{ security_info.phishing_status }}</li>
+            <li>Malware Status: {{ security_info.malware_status }}</li>
+    </ul>
+
+    <h3>TLS Cipher Suites</h3>
+    <ul>
+    {% for cipher in security_info.tls_cipher_suites %}
+        <li>{{ cipher }}</li>
+    {% endfor %}
+    </ul>
+
+    <h3>TLS Security Issues</h3>
+    <ul>
+    <li>CA Authorization: {{ security_info.tls_security_issues.ca_authorization }}</li>
+    <li>Mozilla Grading: {{ security_info.tls_security_issues.mozilla_grading }}</li>
+    <li>Symantec Distrust: {{ security_info.tls_security_issues.symantec_distrust }}</li>
+    <li>Certificate Rank: {{ security_info.tls_security_issues.certificate_rank }}</li>
+    <li>Mozilla Evaluation Level: {{ security_info.tls_security_issues.mozilla_evaluation_level }}</li>
+    </ul>
+
+    <h3>Compatibility Config Issues</h3>
+    <ul>
+    {% for issue in security_info.compatibility_issues %}
+        <li>{{ issue }}</li>
+    {% endfor %}
+    </ul>
+
+    <h3>Intermediate Issues</h3>
+    <ul>
+        {% for issue in security_info.intermediate_issues %}
+        <li>{{ issue }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Modern Issues</h3>
+    <ul>
+    {% for issue in security_info.modern_issues %}
+        <li>{{ issue }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Redirects</h2>
+    <ul>
+        <li>Followed Redirects: {{ redirects.followed_redirects }}</li>
+        <li>Final URL: {{ redirects.final_url }}</li>
+    </ul>
+
+    <h2>Linked Pages</h2>
+        <ul>
+                <li>Internal Link Count: {{ linked_pages.internal_count }}</li>
+                <li>External Link Count: {{ linked_pages.external_count }}</li>
+            <h3>Internal Links</h3>
+                <ul>
+                    {% for link in linked_pages.internal_links %}
+                    <li>{{ link }}</li>
+                 {% endfor %}
+                </ul>
+            <h3>External Links</h3>
+                <ul>
+                    {% for link in linked_pages.external_links %}
+                    <li>{{ link }}</li>
+                    {% endfor %}
+                </ul>
+        </ul>
+
+    <h2>Crawl Rules</h2>
+        <pre>{{ crawl_rules }}</pre>
+
+    <h2>Carbon Footprint</h2>
+        <ul>
+            <li>HTML Initial Size: {{ carbon_footprint.html_initial_size }}</li>
+            <li>CO2 for Initial Load: {{ carbon_footprint.co2_initial_load }}</li>
+            <li>Energy Usage for Load: {{ carbon_footprint.energy_usage }}</li>
+            <li>CO2 Emitted: {{ carbon_footprint.co2_emitted }}</li>
+        </ul>
+            
+    <h2>Subdomains</h2>
+        {% if subdomains %}
+    <ul>
+        {% for subdomain in subdomains %}
+            <li>{{ subdomain }}</li>
+        {% endfor %}
+    </ul>
+        {% else %}
+    <p>No subdomains found or error occurred.</p>
+        {% endif %}  
+
+    <a href="/">&#8592; Go back</a>
+</body>
+</html>
