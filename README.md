@@ -27,10 +27,11 @@ This tool consists of three main components:
 
 ### APIs Utilized
 
-- [API1 Name](API1_URL): Provides data on X
-- [API2 Name](API2_URL): Used for Y
+- [Hunter.io]
+- [Censys]:
+- [Api Layer/Number Verifier]:
 
-> **Note:** Replace `API1 Name` and `API2 Name` with the actual APIs used in your tool.
+> **Note:** Replace `Hunter.io`, `Censys` andand `ApiLayer` with the actual APIs used in your tool.
 
 ---
 
@@ -38,7 +39,7 @@ This tool consists of three main components:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/OSINT-Web-Tool.git
+   git clone https://github.com/yourusername/OSINT.Web.git
    cd OSINT-Web-Tool
    ```
 
@@ -57,15 +58,12 @@ This tool consists of three main components:
 
 ### Run the Tool
 
-1. **Run Main Script**:
+  **Run Main Script**:
    The primary file, `mainfile.py`, orchestrates the modules and provides a full-featured OSINT investigation tool.
 
    ```bash
    python mainfile.py
    ```
-
-> Replace `example_target` with the actual target details.
-
 ---
 
 ## Disclaimer
