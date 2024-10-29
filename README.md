@@ -1,5 +1,6 @@
-<p align="justify">
-# OSINT Web Investigation Tool
+## OSINT Web Investigation Tool
+
+<img src="templates/2.png">
 
 **OSINT Web** is a Python-based tool developed for educational purposes, specifically to aid in cybercrime investigations. The tool is designed to help security professionals, law enforcement, and ethical hackers gather publicly available information on a target. Leveraging Open Source Intelligence (OSINT), it integrates various APIs, wordlists, and databases to streamline the investigation process.
 
@@ -64,9 +65,11 @@ This tool consists of three main components:
    ```bash
    python mainfile.py
    ```
+
+<img src="templates/4.png">
+
 ---
 
 ## Disclaimer
 
 This tool is for **educational and lawful investigation purposes only**. Misuse of this tool may be a violation of federal and/or local laws. The developers and contributors are not responsible for any illegal activity conducted with this tool.
-</p>
