@@ -1,4 +1,4 @@
-
+<p align="justify">
 # OSINT Web Investigation Tool
 
 **OSINT Web** is a Python-based tool developed for educational purposes, specifically to aid in cybercrime investigations. The tool is designed to help security professionals, law enforcement, and ethical hackers gather publicly available information on a target. Leveraging Open Source Intelligence (OSINT), it integrates various APIs, wordlists, and databases to streamline the investigation process.
@@ -28,8 +28,8 @@ This tool consists of three main components:
 ### APIs Utilized
 
 - [Hunter.io]
-- [Censys]:
-- [Api Layer/Number Verifier]:
+- [Censys]
+- [Api Layer/Number Verifier]
 
 > **Note:** Replace `Hunter.io`, `Censys` andand `ApiLayer` with the actual APIs used in your tool.
 
@@ -40,7 +40,7 @@ This tool consists of three main components:
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/yourusername/OSINT.Web.git
-   cd OSINT-Web-Tool
+   cd OSINT.Web
    ```
 
 2. **Install Dependencies**:
@@ -69,3 +69,4 @@ This tool consists of three main components:
 ## Disclaimer
 
 This tool is for **educational and lawful investigation purposes only**. Misuse of this tool may be a violation of federal and/or local laws. The developers and contributors are not responsible for any illegal activity conducted with this tool.
+</p>
