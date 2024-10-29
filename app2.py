@@ -206,7 +206,7 @@ def main():
             username = input("Enter social media username: ")
             social_media_search(username)
         elif choice == '6':
-            json_files = ['Muzzaffarnagar1.json', 'MobileNumbers.json']
+            json_files = ['database1.json', 'database2.json']
             tool = OSINTTool(json_files)
             search_term = input("Enter name or mobile number to search: ")
             results = tool.search_data(search_term)
