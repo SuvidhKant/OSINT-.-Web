@@ -26,8 +26,8 @@ This tool consists of three main components:
 
 ### APIs Utilized
 
-- [API1 Name](API1_URL): Provides data on X
-- [API2 Name](API2_URL): Used for Y
+- [API1 Name]: Provides data on X
+- [API2 Name]: Used for Y
 
 > **Note:** Replace `API1 Name` and `API2 Name` with the actual APIs used in your tool.
 
@@ -39,3 +39,12 @@ This tool consists of three main components:
    ```bash
    git clone https://github.com/yourusername/OSINT-Web-Tool.git
    cd OSINT-Web-Tool
+
+2. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+
+3. **Setup API Keys**:
+- Obtain API keys for the necessary services listed above.
+- Add these API keys to a ```bash .env  file or a configuration file as per the tool's requirement.
+   
