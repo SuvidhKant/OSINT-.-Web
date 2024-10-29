@@ -1,3 +1,4 @@
+
 # OSINT Web Investigation Tool
 
 **OSINT Web** is a Python-based tool developed for educational purposes, specifically to aid in cybercrime investigations. The tool is designed to help security professionals, law enforcement, and ethical hackers gather publicly available information on a target. Leveraging Open Source Intelligence (OSINT), it integrates various APIs, wordlists, and databases to streamline the investigation process.
@@ -26,8 +27,8 @@ This tool consists of three main components:
 
 ### APIs Utilized
 
-- [API1 Name]: Provides data on X
-- [API2 Name]: Used for Y
+- [API1 Name](API1_URL): Provides data on X
+- [API2 Name](API2_URL): Used for Y
 
 > **Note:** Replace `API1 Name` and `API2 Name` with the actual APIs used in your tool.
 
@@ -39,12 +40,34 @@ This tool consists of three main components:
    ```bash
    git clone https://github.com/yourusername/OSINT-Web-Tool.git
    cd OSINT-Web-Tool
+   ```
 
 2. **Install Dependencies**:
    ```bash
    pip install -r requirements.txt
+   ```
 
 3. **Setup API Keys**:
-- Obtain API keys for the necessary services listed above.
-- Add these API keys to a ```bash .env  file or a configuration file as per the tool's requirement.
-   
+   - Obtain API keys for the necessary services listed above.
+   - Add these API keys to a `.env` file or a configuration file as per the tool's requirement.
+
+---
+
+## Usage
+
+### Run the Tool
+
+1. **Run Main Script**:
+   The primary file, `mainfile.py`, orchestrates the modules and provides a full-featured OSINT investigation tool.
+
+   ```bash
+   python mainfile.py
+   ```
+
+> Replace `example_target` with the actual target details.
+
+---
+
+## Disclaimer
+
+This tool is for **educational and lawful investigation purposes only**. Misuse of this tool may be a violation of federal and/or local laws. The developers and contributors are not responsible for any illegal activity conducted with this tool.
